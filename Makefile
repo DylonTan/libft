@@ -22,11 +22,11 @@ OPTIONS = -I. $(HEADERS)
 all: $(NAME)
 
 $(NAME):
-	gcc -c $(FLAGS) $(OPTIONS) $(SRCS)
+	$(CC) -c $(FLAGS) $(OPTIONS) $(SRCS)
 	ar rcs $(NAME) $(OBJS)
 
 bonus: $(OBJS) $(BONUS_OBJS)
-	gcc -c $(FLAGS) $(OPTIONS) $(SRCS) $(BONUS)
+	$(CC) -c $(FLAGS) $(OPTIONS) $(SRCS) $(BONUS)
 	ar rcs $(NAME) $(OBJS) $(BONUS_OBJS)
 
 clean:
@@ -36,9 +36,5 @@ fclean: clean
 	rm -f $(NAME)
 
 re: fclean $(NAME)
-
-so:
-	gcc -nostartfiles -fPIC $(FLAGS) $(SRCS)
-	gcc -nostartfiles -shared -o libft.so $(OBJS)
 
 .PHONY: all clean fclean re bonus
